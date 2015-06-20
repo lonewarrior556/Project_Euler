@@ -3,10 +3,12 @@ p[0]=1
 p[1]=1
 
 d=dict()
-for i in range(1,9):
+for i in range(1,2000):
     d[i*(3*i+1)/2] = i
     d[i*(3*i-1)/2] = i
 
+print sorted(d.keys())
+raw_input()
 def alpha(n):
 
     if n == 0:
@@ -42,20 +44,22 @@ def next_digits(entry,n):
         start = maximum
     return range(start,1,-1)
 
-for i in range(2,51):
+for i in range(2,20):
     build_p(i)
 
-print "p built upto 50"
-print "p[50]="
-print p[50]
-
-for j in range(51,101):
-    eq = "0 - ("
+j=20
+while True:
+    print j
+    # eq = "0 - ("
+    value = 0
     for i in range(1,j+1):
         if alpha(i)!= 0:
-            eq += " "+ (str(alpha(i))[0:-1]+"+")[0] + "p["+ str(j-i)+"]"
-    eq +=")"
-    print eq
-    value = eval(eq)
-    print value
+            value -= alpha(i)*p[j-i]
+            # eq += " "+ (str(alpha(i))[0:-1]+"+")[0] + "p["+ str(j-i)+"]"
+    # eq +=")"
     p[j]=value
+    if value % 1000000 == 0:
+        print "ANSWER!"
+        print j
+        break
+    j+=1
