@@ -1,6 +1,6 @@
 from decimal import *
 
-getcontext().prec = 120
+getcontext().prec = 100
 tot = 0
 for i in range(2,100):
     num = Decimal(i).sqrt()
